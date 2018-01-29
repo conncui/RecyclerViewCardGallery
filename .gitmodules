@@ -1,0 +1,9 @@
+[submodule "ConnCommonAndroid"]
+	path = ConnCommonAndroid
+	url = git@gitee.com:conncui/ConnCommonAndroid.git
+[submodule "ConnCommon"]
+	path = ConnCommon
+	url = git@gitee.com:conncui/ConnCommon.git
+[submodule "ConnCommonJava"]
+	path = ConnCommonJava
+	url = git@gitee.com:conncui/ConnCommonJava.git

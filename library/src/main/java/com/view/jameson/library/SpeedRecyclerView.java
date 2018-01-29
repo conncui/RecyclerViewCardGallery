@@ -1,9 +1,13 @@
 package com.view.jameson.library;
 
+import com.conncui.common.tool.LifeCycle;
+import com.conncui.common.tool.ToolLog;
+
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 
 /**
  * 控制fling速度的RecyclerView
@@ -11,6 +15,7 @@ import android.util.AttributeSet;
  * Created by jameson on 9/1/16.
  */
 public class SpeedRecyclerView extends RecyclerView {
+    private String TAG = SpeedRecyclerView.class.getSimpleName();
     private static final float FLING_SCALE_DOWN_FACTOR = 0.5f; // 减速因子
     private static final int FLING_MAX_VELOCITY = 8000; // 最大顺时滑动速度
 
@@ -28,6 +33,7 @@ public class SpeedRecyclerView extends RecyclerView {
 
     @Override
     public boolean fling(int velocityX, int velocityY) {
+        ToolLog.d(TAG, LifeCycle.getCurrentMethodName(),"velocityX:"+velocityX,"velocityY:"+velocityY);
         velocityX = solveVelocity(velocityX);
         velocityY = solveVelocity(velocityY);
         return super.fling(velocityX, velocityY);

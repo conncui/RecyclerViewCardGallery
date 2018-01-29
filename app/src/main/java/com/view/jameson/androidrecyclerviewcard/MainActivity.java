@@ -32,6 +32,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // 2018年01月29日19:30:00 不是一个很好的Demo. 首次进入自动划过3张,后面一张伴随大小改动
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             View decorView = getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -59,37 +60,37 @@ public class MainActivity extends Activity {
         mCardScaleHelper.setCurrentItemPos(2);
         mCardScaleHelper.attachToRecyclerView(mRecyclerView);
 
-        initBlurBackground();
+//        initBlurBackground();
     }
 
-    private void initBlurBackground() {
-        mBlurView = (ImageView) findViewById(R.id.blurView);
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    notifyBackgroundChange();
-                }
-            }
-        });
+//    private void initBlurBackground() {
+//        mBlurView = (ImageView) findViewById(R.id.blurView);
+//        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+//                    notifyBackgroundChange();
+//                }
+//            }
+//        });
+//
+//        notifyBackgroundChange();
+//    }
 
-        notifyBackgroundChange();
-    }
-
-    private void notifyBackgroundChange() {
-        if (mLastPos == mCardScaleHelper.getCurrentItemPos()) return;
-        mLastPos = mCardScaleHelper.getCurrentItemPos();
-        final int resId = mList.get(mCardScaleHelper.getCurrentItemPos());
-        mBlurView.removeCallbacks(mBlurRunnable);
-        mBlurRunnable = new Runnable() {
-            @Override
-            public void run() {
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), resId);
-                ViewSwitchUtils.startSwitchBackgroundAnim(mBlurView, BlurBitmapUtils.getBlurBitmap(mBlurView.getContext(), bitmap, 15));
-            }
-        };
-        mBlurView.postDelayed(mBlurRunnable, 500);
-    }
+//    private void notifyBackgroundChange() {
+//        if (mLastPos == mCardScaleHelper.getCurrentItemPos()) return;
+//        mLastPos = mCardScaleHelper.getCurrentItemPos();
+//        final int resId = mList.get(mCardScaleHelper.getCurrentItemPos());
+//        mBlurView.removeCallbacks(mBlurRunnable);
+//        mBlurRunnable = new Runnable() {
+//            @Override
+//            public void run() {
+//                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), resId);
+//                ViewSwitchUtils.startSwitchBackgroundAnim(mBlurView, BlurBitmapUtils.getBlurBitmap(mBlurView.getContext(), bitmap, 15));
+//            }
+//        };
+//        mBlurView.postDelayed(mBlurRunnable, 500);
+//    }
 
 }
